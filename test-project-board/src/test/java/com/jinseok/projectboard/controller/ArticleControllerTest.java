@@ -31,7 +31,6 @@ class ArticleControllerTest {
 
     }
 
-    @Disabled("구현중")
     @DisplayName("[view][GET] 게시글 상세 페이지 - 정상호출")
     @Test
     public void given_whenRequestingArticleView_thenReturnsArticleView() throws Exception {
@@ -41,7 +40,6 @@ class ArticleControllerTest {
                 .andExpect(view().name("articles/detail"))
                 .andExpect(model().attributeExists("article"))
                 .andExpect(model().attributeExists("articleComments"));
-
     }
 
     @Disabled("구현중")
