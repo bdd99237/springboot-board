@@ -19,16 +19,38 @@ repositories {
 }
 
 dependencies {
+    // 타임리프
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // 스프링부트 Data REST - 도메인 모델과 repository를 분석해서, RESTful API를 제공해준다.
     implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+
+    // spring-data-rest-hal-explorer
+    // API간 검색을 하이퍼링크로 쉽게 해준다.
+    // http://로컬 주소:포트/actuator 로 기본 접근을 한다.
     implementation 'org.springframework.data:spring-data-rest-hal-explorer'
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
+
+    // 스프링부트 웹
     implementation 'org.springframework.boot:spring-boot-starter-web'
+
+    // 롬복
     compileOnly 'org.projectlombok:lombok'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+
+    // 스프링부트 데브툴즈 - 수정시 자동 재시작을 지원한다. 그외 여러 기능이 있음
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+    // 테스트
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
+
+    // 스프링부트 데이터 jpa - 쉬운 SQL쿼리 사용을 지원
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+
+    // H2콘솔 - 자바기반의 RDBS, 가벼워서 개발시 테스트용으로 사용하는 DB
     runtimeOnly 'com.h2database:h2'
+
+    // MySQL
     runtimeOnly 'mysql:mysql-connector-java'
 
     //queryDSL 설정
@@ -38,6 +60,14 @@ dependencies {
     annotationProcessor "com.querydsl:querydsl-apt:${dependencyManagement.importedProperties['querydsl.version']}:jpa"
     annotationProcessor "jakarta.annotation:jakarta.annotation-api"
     annotationProcessor "jakarta.persistence:jakarta.persistence-api"
+
+    //configuration과 IDE의 부드러운 연동을 위한 설정
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // 스프링부터 시큐리티
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+    // 스프링부트 이니셜라이져에서 시큐리티와 타임리프가 동시에 디팬던시에 추가될때 나타나는 디팬던시
+    implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 }
 
 tasks.named('test') {
